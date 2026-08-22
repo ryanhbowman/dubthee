@@ -1,11 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600&display=swap");
 
 :root {
-  --royal-purple-dark: #1a0a2e;
-  --royal-purple: #3b0f6b;
-  --royal-purple-light: #5c1f9e;
+  --royal-plum-dark: #1c0630;
+  --royal-plum: #2c0a4e;
+  --royal-violet: #5b1a8c;
+  --royal-amethyst: #8a2ea6;
+  --royal-magenta: #a8226f;
   --gold: #f0c14b;
   --gold-bright: #ffe8a3;
+  --gold-deep: #b8860b;
   --parchment: #f6ecd9;
 }
 
@@ -26,7 +29,10 @@ body {
   padding: 24px;
   font-family: "Cinzel", serif;
   color: var(--parchment);
-  background: radial-gradient(circle at 50% 20%, var(--royal-purple-light), var(--royal-purple) 45%, var(--royal-purple-dark) 100%);
+  background:
+    radial-gradient(circle at 24% 18%, rgba(168, 34, 111, 0.55), transparent 45%),
+    radial-gradient(circle at 78% 78%, rgba(90, 20, 140, 0.5), transparent 50%),
+    linear-gradient(155deg, var(--royal-amethyst) 0%, var(--royal-violet) 35%, var(--royal-plum) 68%, var(--royal-plum-dark) 100%);
   background-attachment: fixed;
   overflow-x: hidden;
 }
@@ -62,15 +68,50 @@ body::after {
 .frame {
   position: relative;
   width: min(680px, 100%);
-  padding: 56px 40px;
+  padding: 64px 48px;
   text-align: center;
-  border-radius: 18px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
-  border: 3px double var(--gold);
+  border-radius: 22px;
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02) 40%, rgba(0, 0, 0, 0.18) 100%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  border: 4px double var(--gold);
   box-shadow:
-    0 0 0 8px rgba(240, 193, 75, 0.08),
-    0 20px 60px rgba(0, 0, 0, 0.5),
-    inset 0 0 40px rgba(240, 193, 75, 0.08);
+    0 0 0 3px rgba(28, 6, 48, 0.9),
+    0 0 0 7px var(--gold),
+    0 0 0 10px rgba(28, 6, 48, 0.9),
+    0 0 26px 4px rgba(240, 193, 75, 0.35),
+    0 24px 70px rgba(0, 0, 0, 0.55),
+    inset 0 0 40px rgba(240, 193, 75, 0.1);
+}
+
+.frame::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(240, 193, 75, 0.55);
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+.corner {
+  position: absolute;
+  width: 72px;
+  height: 72px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23f0c14b' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M6 76 C6 36 36 6 76 6' stroke-width='2' opacity='0.55'/%3E%3Cpath d='M6 58 C6 28 28 6 58 6'/%3E%3Cpath d='M6 40 L6 6 L40 6'/%3E%3Cpath d='M22 6 C30 16 16 30 6 22'/%3E%3Ccircle cx='15' cy='15' r='6' fill='%23f0c14b' stroke='none'/%3E%3Ccircle cx='15' cy='15' r='9' fill='none' stroke='%23f0c14b' stroke-width='1.5' opacity='0.6'/%3E%3C/g%3E%3C/svg%3E")
+    no-repeat center / contain;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+}
+
+.corner-tl { top: -8px; left: -8px; }
+.corner-tr { top: -8px; right: -8px; transform: scaleX(-1); }
+.corner-bl { bottom: -8px; left: -8px; transform: scaleY(-1); }
+.corner-br { bottom: -8px; right: -8px; transform: scale(-1, -1); }
+
+@media (max-width: 480px) {
+  body { padding: 16px; }
+  .frame { padding: 52px 26px; }
+  .corner { width: 52px; height: 52px; }
 }
 
 .crown {
@@ -103,10 +144,10 @@ body::after {
 
 .flag {
   display: block;
-  font-size: clamp(3.5rem, 12vw, 6rem);
+  font-size: clamp(10.5rem, 36vw, 18rem);
   line-height: 1;
   margin-bottom: 12px;
-  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.45));
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
 }
 
 .name {
@@ -115,7 +156,7 @@ body::after {
   font-weight: 900;
   font-size: clamp(2rem, 8vw, 3.6rem);
   line-height: 1.1;
-  background: linear-gradient(180deg, var(--gold-bright), var(--gold) 60%, #b8860b);
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold) 60%, var(--gold-deep));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
