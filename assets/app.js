@@ -33,7 +33,6 @@ function render() {
 
   if (!requested) {
     stage.innerHTML = `
-      <p class="decree">I dub thee back from</p>
       <p class="blank">___________</p>
       <p class="hint">Add a country to the address, Your Majesty.<br>
         e.g. <code>dubtheebackfrom.com/india</code></p>
@@ -46,7 +45,6 @@ function render() {
 
   if (!match) {
     stage.innerHTML = `
-      <p class="decree">I dub thee back from</p>
       <p class="country unknown">A LAND UNKNOWN TO THE CROWN&hellip;</p>
       <p class="hint">No kingdom named &ldquo;${escapeHtml(requested)}&rdquo; was found in the royal atlas.</p>
     `;
@@ -54,12 +52,27 @@ function render() {
   }
 
   stage.innerHTML = `
-    <p class="decree">I dub thee back from</p>
     <p class="country">
       <span class="flag">${flagEmoji(match.code)}</span>
       <span class="name">${match.name.toUpperCase()}!!!</span>
     </p>
   `;
+
+  celebrate(FLAG_COLORS[match.code]);
+}
+
+function celebrate(colors) {
+  const stage = document.getElementById("stage");
+  const discoRig = document.querySelector(".disco-ball-rig");
+
+  stage.addEventListener(
+    "animationend",
+    () => {
+      discoRig.classList.add("active");
+      if (window.launchConfetti) window.launchConfetti(colors);
+    },
+    { once: true }
+  );
 }
 
 function escapeHtml(str) {
