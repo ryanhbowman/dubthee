@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600&display=swap");
+
+:root {
+  --royal-purple-dark: #1a0a2e;
+  --royal-purple: #3b0f6b;
+  --royal-purple-light: #5c1f9e;
+  --gold: #f0c14b;
+  --gold-bright: #ffe8a3;
+  --parchment: #f6ecd9;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  font-family: "Cinzel", serif;
+  color: var(--parchment);
+  background: radial-gradient(circle at 50% 20%, var(--royal-purple-light), var(--royal-purple) 45%, var(--royal-purple-dark) 100%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(2px 2px at 10% 20%, var(--gold-bright) 0, transparent 60%),
+    radial-gradient(2px 2px at 80% 15%, var(--gold-bright) 0, transparent 60%),
+    radial-gradient(2px 2px at 30% 80%, var(--gold-bright) 0, transparent 60%),
+    radial-gradient(2px 2px at 65% 65%, var(--gold-bright) 0, transparent 60%),
+    radial-gradient(2px 2px at 90% 85%, var(--gold-bright) 0, transparent 60%),
+    radial-gradient(2px 2px at 15% 55%, var(--gold-bright) 0, transparent 60%);
+  opacity: 0.5;
+  animation: twinkle 3.5s ease-in-out infinite alternate;
+}
+
+body::after {
+  background-position: 40px 60px;
+  animation-duration: 4.5s;
+  animation-direction: alternate-reverse;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.2; }
+  to { opacity: 0.7; }
+}
+
+.frame {
+  position: relative;
+  width: min(680px, 100%);
+  padding: 56px 40px;
+  text-align: center;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  border: 3px double var(--gold);
+  box-shadow:
+    0 0 0 8px rgba(240, 193, 75, 0.08),
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    inset 0 0 40px rgba(240, 193, 75, 0.08);
+}
+
+.crown {
+  font-size: 3.5rem;
+  display: block;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 4px 12px rgba(240, 193, 75, 0.5));
+  animation: bob 3s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-8px) rotate(2deg); }
+}
+
+.decree {
+  font-family: "Cinzel Decorative", serif;
+  font-weight: 700;
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
+  margin: 0 0 20px;
+  letter-spacing: 0.02em;
+  color: var(--gold-bright);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+.country {
+  margin: 0;
+  animation: proclaim 0.6s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+
+.flag {
+  display: block;
+  font-size: clamp(3.5rem, 12vw, 6rem);
+  line-height: 1;
+  margin-bottom: 12px;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.45));
+}
+
+.name {
+  display: block;
+  font-family: "Cinzel Decorative", serif;
+  font-weight: 900;
+  font-size: clamp(2rem, 8vw, 3.6rem);
+  line-height: 1.1;
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold) 60%, #b8860b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.country.unknown .name,
+.name.unknown {
+  font-size: clamp(1.4rem, 5vw, 2rem);
+}
+
+p.country.unknown {
+  animation: proclaim 0.6s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+
+@keyframes proclaim {
+  0% { opacity: 0; transform: scale(0.7) translateY(10px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.blank {
+  font-family: "Cinzel Decorative", serif;
+  font-size: clamp(1.6rem, 6vw, 2.6rem);
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  opacity: 0.6;
+  margin: 0;
+}
+
+.hint {
+  margin: 24px 0 0;
+  font-size: 1rem;
+  color: var(--parchment);
+  opacity: 0.85;
+  line-height: 1.6;
+}
+
+.hint code {
+  font-family: "Cinzel", monospace;
+  background: rgba(240, 193, 75, 0.15);
+  border: 1px solid rgba(240, 193, 75, 0.4);
+  border-radius: 6px;
+  padding: 2px 8px;
+  color: var(--gold-bright);
+}
